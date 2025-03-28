@@ -23,14 +23,21 @@ int main()
     do
     {
         srand(time(NULL));
+        int answer;
         int num1 = GetRandNum1();
         int num2 = GetRandNum2();
         int result = AddBothNums(num1, num2);
 
-        cout << "  " << num1 << endl << "+ " << num2 << "\n" << "----";
-        _getch(); // I had to look this one up. Originally i was just going to use cin to assign a value to nothing. But that's jank.
-        //_getch() takes the input but does not display it to the console and advances to the next line. 
-        cout << endl << setw(4) << result << endl;
+        cout << "  " << num1 << endl << "+ " << num2 << "\n" << "----" << endl
+        cin >> answer; 
+        if (answer == result)
+        {
+            cout << "That's correct! Congrats! \n";
+        }
+        else
+        {
+            cout << "That's incorrect! The answer is: " << result << endl; 
+        }
         cout << "Would you like to try another problem? (y/n) ";
         
         cin >> repeat; 
