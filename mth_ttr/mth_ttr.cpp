@@ -28,7 +28,7 @@ int main()
         int num2 = GetRandNum2();
         int result = AddBothNums(num1, num2);
 
-        cout << "  " << num1 << endl << "+ " << num2 << "\n" << "----" << endl
+        cout << "  " << num1 << endl << "+ " << num2 << "\n" << "----" << endl;
         cin >> answer; 
         if (answer == result)
         {
