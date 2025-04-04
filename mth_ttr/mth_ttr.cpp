@@ -12,56 +12,69 @@ gets the answer. Have the answer be displayed after the user presses button.
 #include <iomanip>
 #include <conio.h> 
 using namespace std;
-int GetRandNum1();
-int GetRandNum2();
+int GetRandNum();
+void DisplayCalc(int num1, int num2, int result);
 int AddBothNums(int num1, int num2);
-
-
+char Repeat();
+void CheckAnswer(int result); 
 int main()
 {
     char repeat;
     do
     {
         srand(time(NULL));
-        int answer;
-        int num1 = GetRandNum1();
-        int num2 = GetRandNum2();
+        int num1 = GetRandNum(); // Using the same function twice since I only need one random function to make 2 numbers (as long as its properly seeded.)
+        int num2 = GetRandNum();
         int result = AddBothNums(num1, num2);
+        DisplayCalc(num1, num2, result);
+        CheckAnswer(result);
+        repeat = Repeat();
 
-        cout << "  " << num1 << endl << "+ " << num2 << "\n" << "----" << endl;
-        cin >> answer; 
-        if (answer == result)
-        {
-            cout << "That's correct! Congrats! \n";
-        }
-        else
-        {
-            cout << "That's incorrect! The answer is: " << result << endl; 
-        }
-        cout << "Would you like to try another problem? (y/n) ";
-        
-        cin >> repeat; 
-        if (repeat == 'n')
-        {
-            cout << "Closing.";
-        }
+        cout << endl; //formatting so the addition display isnt smushed into the "would you like to repeat" text.
     } while (repeat == 'y');
 }
 
-int GetRandNum1()
+int GetRandNum()
 {
-    int num1 = rand() % 100;
+    int num1 = rand() % 100; //uses modulo to keep the number below 100 for ease of verification. 
     return num1;
 }
 
-int GetRandNum2()
-{
-    int num2 = rand() % 100;
-    return num2;
-}
 
 int AddBothNums(int num1, int num2)
 {
     int total = num1 + num2;
     return total;
+}
+
+void DisplayCalc(int num1, int num2, int result)
+{
+    cout << "  " << num1 << endl << "+ " << num2 << "\n" << "----" << endl;
+}
+
+char Repeat()
+{
+    char repeat;
+    cout << "\n Would you like to try another problem? (y/n) ";
+
+    cin >> repeat;
+    if (repeat == 'n')
+    {
+        cout << "Closing.";
+    }
+    return repeat;
+}
+
+void CheckAnswer(int result)
+{
+    int answer;
+    cin >> answer;
+    if (answer == result)
+    {
+        cout << "That's correct! Congrats! \n";
+    }
+    else
+    {
+        cout << "That's incorrect! The answer was: " << result << endl;
+    }
 }
